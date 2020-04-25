@@ -13,6 +13,10 @@ type User struct {
 	Token    string `json:"token" gorm:"type:varchar(255);unique_index" valid:"notnull,uuid"`
 }
 
+func NewUser() *User {
+	return &User{}
+}
+
 func (user *User) Prepare() error {
 
 	password, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
